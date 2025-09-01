@@ -1,0 +1,81 @@
+[2024-01-15 09:15:23.456] [INFO] Application startup initiated
+[2024-01-15 09:15:23.457] [DEBUG] Loading configuration from config.json
+[2024-01-15 09:15:23.458] [INFO] Configuration loaded successfully
+[2024-01-15 09:15:23.459] [DEBUG] Initializing thread pool with 8 threads
+[2024-01-15 09:15:23.460] [INFO] Thread pool initialized
+[2024-01-15 09:15:23.461] [DEBUG] Setting up file processors
+[2024-01-15 09:15:23.462] [INFO] Text processor registered
+[2024-01-15 09:15:23.463] [INFO] Image processor registered
+[2024-01-15 09:15:23.464] [DEBUG] Processors setup complete
+[2024-01-15 09:15:23.465] [INFO] System ready for processing
+
+[2024-01-15 09:15:30.123] [INFO] Processing request received
+[2024-01-15 09:15:30.124] [DEBUG] Input path: /data/documents/
+[2024-01-15 09:15:30.125] [DEBUG] Output path: /output/processed/
+[2024-01-15 09:15:30.126] [DEBUG] Scanning input directory
+[2024-01-15 09:15:30.127] [INFO] Found 15 files to process
+[2024-01-15 09:15:30.128] [DEBUG] File types: 12 text, 3 images
+[2024-01-15 09:15:30.129] [INFO] Starting batch processing
+
+[2024-01-15 09:15:30.200] [DEBUG] Processing file: document1.txt
+[2024-01-15 09:15:30.201] [DEBUG] File size: 2048 bytes
+[2024-01-15 09:15:30.202] [DEBUG] Assigned to thread: worker-3
+[2024-01-15 09:15:30.250] [INFO] document1.txt processed successfully
+[2024-01-15 09:15:30.251] [DEBUG] Processing time: 49ms
+[2024-01-15 09:15:30.252] [DEBUG] Output: document1_analysis.txt
+
+[2024-01-15 09:15:30.300] [DEBUG] Processing file: report.md
+[2024-01-15 09:15:30.301] [DEBUG] File size: 4096 bytes
+[2024-01-15 09:15:30.302] [DEBUG] Assigned to thread: worker-1
+[2024-01-15 09:15:30.380] [INFO] report.md processed successfully
+[2024-01-15 09:15:30.381] [DEBUG] Processing time: 79ms
+[2024-01-15 09:15:30.382] [DEBUG] Output: report_analysis.txt
+
+[2024-01-15 09:15:30.400] [WARNING] Large file detected: dataset.csv (50MB)
+[2024-01-15 09:15:30.401] [DEBUG] Using chunked processing strategy
+[2024-01-15 09:15:30.402] [DEBUG] Chunk size: 1MB
+[2024-01-15 09:15:30.403] [DEBUG] Assigned to thread: worker-5
+[2024-01-15 09:15:32.156] [INFO] dataset.csv processed successfully
+[2024-01-15 09:15:32.157] [DEBUG] Processing time: 1754ms
+[2024-01-15 09:15:32.158] [DEBUG] Chunks processed: 50
+
+[2024-01-15 09:15:32.200] [ERROR] Failed to process corrupted_file.txt
+[2024-01-15 09:15:32.201] [ERROR] Error: Invalid UTF-8 encoding detected
+[2024-01-15 09:15:32.202] [DEBUG] Attempting recovery with fallback encoding
+[2024-01-15 09:15:32.203] [WARNING] Partial processing completed with warnings
+[2024-01-15 09:15:32.204] [DEBUG] Recovered 80% of file content
+
+[2024-01-15 09:15:35.500] [INFO] Batch processing completed
+[2024-01-15 09:15:35.501] [INFO] Statistics: 14/15 files processed successfully
+[2024-01-15 09:15:35.502] [INFO] Total processing time: 5.3 seconds
+[2024-01-15 09:15:35.503] [INFO] Average throughput: 12.5 MB/s
+[2024-01-15 09:15:35.504] [DEBUG] Memory usage: 45MB peak
+[2024-01-15 09:15:35.505] [DEBUG] Thread utilization: 87% average
+
+[2024-01-15 09:15:40.000] [DEBUG] Cleanup initiated
+[2024-01-15 09:15:40.001] [DEBUG] Shutting down thread pool
+[2024-01-15 09:15:40.002] [INFO] All worker threads terminated
+[2024-01-15 09:15:40.003] [DEBUG] Releasing resources
+[2024-01-15 09:15:40.004] [INFO] Cleanup completed
+[2024-01-15 09:15:40.005] [INFO] Application shutdown successful
+
+[2024-01-15 10:30:15.123] [INFO] System health check initiated
+[2024-01-15 10:30:15.124] [DEBUG] Checking memory usage
+[2024-01-15 10:30:15.125] [DEBUG] Memory usage: 23MB (normal)
+[2024-01-15 10:30:15.126] [DEBUG] Checking thread pool status
+[2024-01-15 10:30:15.127] [DEBUG] Thread pool: 8 threads active
+[2024-01-15 10:30:15.128] [DEBUG] Checking file system access
+[2024-01-15 10:30:15.129] [DEBUG] File system: read/write access confirmed
+[2024-01-15 10:30:15.130] [INFO] Health check passed
+
+[2024-01-15 11:45:30.456] [WARNING] High memory usage detected: 85%
+[2024-01-15 11:45:30.457] [DEBUG] Triggering garbage collection
+[2024-01-15 11:45:30.458] [DEBUG] Memory freed: 15MB
+[2024-01-15 11:45:30.459] [INFO] Memory usage normalized: 70%
+
+[2024-01-15 12:00:00.000] [INFO] Hourly statistics report
+[2024-01-15 12:00:00.001] [INFO] Files processed: 127
+[2024-01-15 12:00:00.002] [INFO] Total data processed: 256MB
+[2024-01-15 12:00:00.003] [INFO] Average processing time: 145ms per file
+[2024-01-15 12:00:00.004] [INFO] Error rate: 2.3%
+[2024-01-15 12:00:00.005] [INFO] System uptime: 2h 44m 37s

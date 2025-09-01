@@ -1,0 +1,180 @@
+{
+  "application": {
+    "name": "File Processing System",
+    "version": "2.1.0",
+    "build": "20240115-1234",
+    "environment": "production"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "max_connections": 1000,
+    "timeout": 30000,
+    "ssl": {
+      "enabled": true,
+      "certificate": "/etc/ssl/certs/server.crt",
+      "private_key": "/etc/ssl/private/server.key",
+      "protocols": ["TLSv1.2", "TLSv1.3"]
+    }
+  },
+  "database": {
+    "type": "postgresql",
+    "host": "db.example.com",
+    "port": 5432,
+    "name": "fileprocessor",
+    "username": "app_user",
+    "password": "${DB_PASSWORD}",
+    "pool": {
+      "min_connections": 5,
+      "max_connections": 20,
+      "idle_timeout": 300000
+    },
+    "options": {
+      "ssl_mode": "require",
+      "connect_timeout": 10000,
+      "query_timeout": 30000
+    }
+  },
+  "cache": {
+    "type": "redis",
+    "host": "cache.example.com",
+    "port": 6379,
+    "database": 0,
+    "password": "${REDIS_PASSWORD}",
+    "ttl": 3600,
+    "max_memory": "256MB"
+  },
+  "processing": {
+    "workers": {
+      "count": 8,
+      "queue_size": 1000,
+      "timeout": 300000
+    },
+    "limits": {
+      "max_file_size": "100MB",
+      "max_batch_size": 50,
+      "memory_limit": "2GB"
+    },
+    "strategies": {
+      "small_files": "single_thread",
+      "large_files": "chunked_parallel",
+      "batch_processing": "work_stealing"
+    }
+  },
+  "storage": {
+    "input": {
+      "type": "filesystem",
+      "path": "/data/input",
+      "watch": true,
+      "cleanup": {
+        "enabled": true,
+        "retention_days": 30
+      }
+    },
+    "output": {
+      "type": "s3",
+      "bucket": "processed-files",
+      "region": "us-west-2",
+      "prefix": "processed/",
+      "encryption": "AES256"
+    },
+    "temp": {
+      "path": "/tmp/processing",
+      "cleanup_on_exit": true,
+      "max_size": "1GB"
+    }
+  },
+  "monitoring": {
+    "metrics": {
+      "enabled": true,
+      "endpoint": "/metrics",
+      "interval": 60000
+    },
+    "health_check": {
+      "enabled": true,
+      "endpoint": "/health",
+      "timeout": 5000
+    },
+    "alerts": {
+      "email": {
+        "enabled": true,
+        "smtp_server": "smtp.example.com",
+        "recipients": ["admin@example.com", "ops@example.com"]
+      },
+      "slack": {
+        "enabled": true,
+        "webhook_url": "${SLACK_WEBHOOK}",
+        "channel": "#alerts"
+      }
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "json",
+    "outputs": [
+      {
+        "type": "console",
+        "level": "INFO"
+      },
+      {
+        "type": "file",
+        "level": "DEBUG",
+        "path": "/var/log/fileprocessor/app.log",
+        "rotation": {
+          "max_size": "100MB",
+          "max_files": 10
+        }
+      },
+      {
+        "type": "syslog",
+        "level": "ERROR",
+        "facility": "local0"
+      }
+    ]
+  },
+  "security": {
+    "authentication": {
+      "type": "jwt",
+      "secret": "${JWT_SECRET}",
+      "expiration": 86400,
+      "refresh_enabled": true
+    },
+    "authorization": {
+      "enabled": true,
+      "default_role": "user",
+      "admin_users": ["admin", "root"]
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100,
+      "burst_size": 20
+    }
+  },
+  "features": {
+    "file_types": {
+      "text": {
+        "enabled": true,
+        "extensions": [".txt", ".md", ".csv", ".log", ".json"],
+        "max_size": "50MB",
+        "encoding": "utf-8"
+      },
+      "images": {
+        "enabled": true,
+        "extensions": [".jpg", ".jpeg", ".png", ".gif", ".bmp"],
+        "max_size": "20MB",
+        "max_dimensions": "4096x4096"
+      },
+      "documents": {
+        "enabled": false,
+        "extensions": [".pdf", ".doc", ".docx"],
+        "max_size": "100MB"
+      }
+    },
+    "plugins": {
+      "enabled": true,
+      "directory": "/opt/fileprocessor/plugins",
+      "auto_load": true,
+      "whitelist": ["text_analyzer", "image_resizer"]
+    }
+  }
+}
